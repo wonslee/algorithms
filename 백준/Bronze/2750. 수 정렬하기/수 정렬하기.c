@@ -1,0 +1,20 @@
+#include <stdio.h>
+int list[1000];
+
+int main() {
+  int n;
+  scanf("%i", &n);
+
+  for (int i = 0; i < n; i++) {
+    int j, input;
+    scanf("%i", &input);
+    // 입력값보다 큰 애들은 오른쪽으로 한 칸씩 이동
+    for (j = i - 1; j >= 0 && list[j] > input; j--)
+      list[j + 1] = list[j];
+    // 찾은 index에다 삽입
+    list[j + 1] = input;
+  }
+  // 출력
+  for (int i = 0; i < n; i++)
+    printf("%i\n", list[i]);
+}
