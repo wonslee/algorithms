@@ -11,7 +11,8 @@
 
  # 문제 접근
  첫번째. 조건 때문에 중복된 단어에 대한 검사 실행.. O(N^2)여서 시간초과
- 두번쨰. 애초에 set을 써서 삽입한 뒤에, vector로 변환 한 후 sort.
+ 두번째. 애초에 set을 써서 삽입한 뒤에, vector로 변환 한 후 sort.
+ 세번째. 정렬된 이후엔 어차피 인접해서 나타나니까, 똑같다면 무시하면 된다.
 
  1. 입력
  2. loop(n) : 중복 검사 후 vector에 삽입
@@ -30,13 +31,14 @@
  ## 공간 복잡도
  모든 string 입력값이 50길이 일때 50byte, 최대 20000개이므로 1000000byte = 1MB.
  # 배운 점
+ - 처음 생각했던 방식에서 조금만 더 생각해보면 다른 인사이트가 나올 수 있다. 이번엔 'sort된 이후에 같은 단어끼리는 인접'하다는 포인트를 놓쳤다. 단순히 index 한칸씩만 확인하면 되는 일을, 전체에 대한 O(N) 검사로 만들었다.
+ - unique() 함수도 있다..
  */
 
 #include <bits/stdc++.h>
 using namespace std;
 
-set<string> s;
-vector<string> v;
+string arr[20000];
 
 bool compare(string x, string y){
     // 1. 길이 비교
@@ -49,21 +51,20 @@ bool compare(string x, string y){
 int main(){
     int n;
     cin >> n;
-    string input;
 
     // 입력값들을 set에 삽입
-    while (n--){
-        cin >> input;
-        s.insert(input);
-    }
-
-    // vector로 옮기기
-    for (string element : s)
-        v.push_back(element);
+    for (int i=0; i<n; i++)
+        cin >> arr[i];
+    
 
     // sort
-    sort(v.begin(), v.end(), compare);
+    sort(arr, arr+n, compare);
 
-    for (string element : v)
-        cout << element << endl;
+    for (int i=0; i < n; i++){
+        // 인접하고 같은 string이 있다면 무시
+        if (i >0 && arr[i] == arr[i-1])
+            continue;
+        else
+            cout << arr[i] << "\n";
+    }
 }
