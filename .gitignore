@@ -1,2 +1,6 @@
 *.out
-.clangd
+*.clangd
+*.iml
+*.xml
+cmake-build-debug/
+fileIO/
