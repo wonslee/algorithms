@@ -9,7 +9,7 @@
  우선 직선범위에 대해서 퀸의 자리와 같은 x,y 자리는 모두 제외.
  대각선범위에 대해서 퀸의 자리에서 (+1,+1)(-1,-1)(-1,+1)(+1,-1) 자리는 모두 제외.
 
-# 계획
+# 계획(실패)
  count=0
  vector<pair> v
  visited[][]
@@ -24,18 +24,14 @@
                 v.pop()
                 visited[x][y]=false
 # 계획 검증
-
-## 시간 복잡도
  8Cm. 8*7*6*5 정도.
  push, pop연산은 O(1)이므로 시간 차지 별로 안 함.
 
-## 공간 복잡도
 # 회고
- - 맨 첫번째 퀸만 생각해선 안 된다. 지금까지 있던 모든(idx-1개) 퀸의 공격범위를 고려해야 한다.
- - Queen에 대한 visited가 있어야 한다. 하나의 조합을 싹다 중복해서 계산하고 있었다. (e.g. n=4일 때 2개의 조합을 24개씩 중복 계산해서 48)
- 오름차순(N과M 2)이다!! 조합자체가 '집합'처럼 되어야 한다.
- - 대각선 범위를 한칸씩만 재고 있었다.. 계속 나아가도록 해야 함. https://oeis.org/A000170
-- 시간초과.
+- 백트래킹이라는 점에서 N과M 문제와 똑같지만, **체스판에 대한 수학적인 접근**(x+y, x-y, y)이 가능해야 풀 수 있었던 문제. 
+isused1~3은 한 조합 속에서 퀸들의 공격범위들을 저장하는 배열. x,y 연산 결과 이 값들이 하나라도 true일 경우 반복문 continue.
+모두 false일 경우 현재 퀸의 공격범위를 3 배열에 저장하고 재귀호출(다음 row).
+- 내가 푼 이전 방법은 모든 칸을 2차원 배열로 다 체크했다. (i,j)가 퀸의 공격범위에 있는지 확인하기 위해 중첩 반복문을 총 4개 쓰게 됐다... 
 - https://github.com/encrypted-def/basic-algo-lecture/blob/master/0x0C/9663.cpp
  */
 
@@ -46,23 +42,25 @@ bool isused1[40]; // column을 차지하고 있는지
 bool isused2[40]; // / 방향 대각선을 차지하고 있는지
 bool isused3[40]; // \ 방향 대각선을 차지하고 있는지
 
-int cnt = 0;
-int n;
-void func(int cur) { // cur번째 row에 말을 배치할 예정임
-    if (cur == n) { // N개를 놓는데 성공했다면
+int n, cnt = 0;
+
+// x번째 column에 말을 배치할 예정
+void func(int x) {
+    if (x == n) { // N개를 놓는데 성공했다면 count +1후 종료
         cnt++;
         return;
     }
-    for (int i = 0; i < n; i++) { // (cur, i)에 퀸을 놓을 예정
-        if (isused1[i] || isused2[i+cur] || isused3[cur-i+n-1]) // column이나 대각선 중에 문제가 있다면
+    // loop(y~n) : 백트래킹 반복문. (x, y)에 퀸을 놓을 예정
+    for (int y = 0; y < n; y++) {
+        if (isused1[y] || isused2[y+x] || isused3[x-y+n-1]) // column이나 대각선 중에 퀸 공격범위가 하나라도 true일 경우
             continue;
-        isused1[i] = 1;
-        isused2[i+cur] = 1;
-        isused3[cur-i+n-1] = 1;
-        func(cur+1);
-        isused1[i] = 0;
-        isused2[i+cur] = 0;
-        isused3[cur-i+n-1] = 0;
+        isused1[y] = true;
+        isused2[y+x] = true;
+        isused3[x-y + n-1] = true;
+        func(x+1);
+        isused1[y] = false;
+        isused2[y+x] = false;
+        isused3[x-y + n-1] = false;
     }
 }
 
