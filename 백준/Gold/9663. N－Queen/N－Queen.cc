@@ -33,6 +33,8 @@ isused1~3은 한 조합 속에서 퀸들의 공격범위들을 저장하는 배�
 모두 false일 경우 현재 퀸의 공격범위를 3 배열에 저장하고 재귀호출(다음 row).
 - 내가 푼 이전 방법은 모든 칸을 2차원 배열로 다 체크했다. (i,j)가 퀸의 공격범위에 있는지 확인하기 위해 중첩 반복문을 총 4개 쓰게 됐다... 
 - https://github.com/encrypted-def/basic-algo-lecture/blob/master/0x0C/9663.cpp
+- http://sooyoung32.github.io/dev/2016/03/14/n-queen-algorithm.html
+- https://www.geeksforgeeks.org/n-queen-problem-backtracking-3/
  */
 
 #include <bits/stdc++.h>
