@@ -2,6 +2,11 @@
 
 [문제 링크](https://www.acmicpc.net/problem/1182) 
 
+isused, 반복문에 매몰되지 말자. 조합에 집중해야 한다.  
+상태공간트리를 만들 수 있다면 모두 백트래킹으로 해결할 수 있다.   
+![Screenshot from 2023-01-21 15-08-23](https://user-images.githubusercontent.com/72124326/213846692-7f149f20-d624-43cd-bbac-2ff55f6c578e.png)
+
+
 ### 성능 요약
 
 메모리: 2020 KB, 시간: 4 ms
