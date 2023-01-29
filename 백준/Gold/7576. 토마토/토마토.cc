@@ -11,16 +11,13 @@
  한번 옮을 때마다 Hi에 대한 count를 증가시키고, 각 칸의 거리 h[][]의 (최소)값을 갱신한다.
  그렇게 여러 1에서 시작한 BFS의 결과로 나온 h[][]에서 최대값과 최소값을 구한다.
  만약 최소값이 0이라면 -1을 출력하고, 최대값이 1이라면 0을 출력. 그 외엔 최대값을 출력한다.
-
  입력받을 때, 처음부터 1인 곳의 좌표(pair)를 배열로 저장하자.
-
 
  BFS
  start[0]을 enqueue
  h[][] = 1
  WHILE( !Q.empty() ):
     dequeue -> cur
-
     DIR LOOP( 인접 4방면 ):
         CONDITION: 범위를 초과하지 않고, 인접칸의 순서 dist[nx][ny]가 0이거나 현재 칸보다 클 경우에만 방문
             enqueue({nx,ny})
@@ -32,7 +29,7 @@
 # 회고
  - 얼떨결에 때려맞춘듯한 느낌이 든다. 코드를 쓰면서 추측을 다듬었다. 출력을 보기도 했고
  - 메모리 초과... 왤까?
- - 시작점이 여러개더라도, 그냥 enqueue 하면 된다??
+ - 여러 시작점을 모두 enqueue하고 시작할 수 있다!!
 */
 
 
@@ -67,7 +64,7 @@ int main(void){
 
             for (int dir=0; dir<4; dir++){// DIR LOOP: 인접 4방면
                 int nx = cur.X + dx[dir], ny = cur.Y + dy[dir];
-                // CONDITION : 범위 내 AND 칸(board, dist)의 값이 0 AND 칸(dist)이 현재 칸(dist)보다 클 경우에만 방문.
+                // CONDITION : 범위 내 AND 칸(dist)의 값이 -1일 경우에만 방문
                 if (nx < 0 || nx >= m || ny < 0 || ny >= n) continue;
                 if (dist[nx][ny] >= 0) continue;
 
