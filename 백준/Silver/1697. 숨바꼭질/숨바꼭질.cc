@@ -3,13 +3,8 @@
  경우의수 문제.
  3갈래(-1, +1, *2)로 쪼개지는 상태공간트리
  특정 포인트가 정해진 경우의 수
-
 # 계획
- BFS.
  상태공간트리를 구현하기 위해 BFS식으로 로직을 짜면 되겠다.
- Hi를 저장해야 함.
-
- pair(value, count) Queue
 
  BFS LOOP(큐가 공백이 아닌동안):
     dequeue -> {value,count}
@@ -28,6 +23,7 @@
  - 특정 포인트가 정해진 경우의 수는 BFS가 유리하다.
  - 메모리 초과. pair가 10byte라고 할 때 3^n * 10byte면.. n이 15라면 대략 150MB. 128MB조건 불만족
  - 배열 OutOfBounds 주의하자.
+ - 무조건 100000안에서만 놀거라고만 생각하면 안 된다! 이문제는 ㄱㅊ
 */
 
 
@@ -48,28 +44,15 @@ int main(void){
     Q.push(N); // 상태공간트리 루트 enqueue
     cnt[N] = 1;
 
-    while (!Q.empty()) {
+    while (cnt[K] == 0) {
         int cur = Q.front();
         Q.pop(); // dequeue
 
-        if (cur == K){// 목표값 찾음
-            cout << cnt[cur] -1;
-            return 0;
-        }
-
-        // enqueue: 3가지 경우의 수
-        int a = cur-1, b = cur+1, c = cur*2;
-        if (a >= 0 && a <= 100000 && cnt[a] == 0 ) {
-            Q.push(a);
-            cnt[a] = cnt[cur] + 1;
-        }
-        if (b >= 0 && b <= 100000 && cnt[b] == 0) {
-            Q.push(b);
-            cnt[b] = cnt[cur] + 1;
-        }
-        if (c >= 0 && c <= 100000 && cnt[c] == 0) {
-            Q.push(c);
-            cnt[c] = cnt[cur] + 1;
-        }
+        for (int nxt : {cur-1, cur+1, cur*2})// RANGE LOOP: 3가지 경우의 수 enqueue
+            if (nxt >= 0 && nxt <= 100000 && cnt[nxt] == 0 ) {
+                Q.push(nxt);
+                cnt[nxt] = cnt[cur] + 1;
+            }
     }
+    cout << cnt[K] -1;
 }
