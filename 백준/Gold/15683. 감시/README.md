@@ -1,3 +1,6 @@
+- DFS 방식 풀이
+https://seokjin2.tistory.com/108
+
 # [Gold IV] 감시 - 15683 
 
 [문제 링크](https://www.acmicpc.net/problem/15683) 
