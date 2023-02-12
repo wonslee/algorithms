@@ -19,7 +19,7 @@
 
     무게 우선, 그 다음 다리 길이와 트럭의 개수.
     if ( current_weight + truck[i] > L ) continue
-    if ( current_number + 1 > W ) continue
+    if ( current_number + 1 > w ) continue
 
     Q.push
     current_weight += truck[i]
@@ -30,41 +30,37 @@
 # 회고
 */
 
+// https://aerimforest.tistory.com/205
 #include <bits/stdc++.h>
 using namespace std;
 
-int n,W,L;
+int n, w, L, cnt, ans, weightSum;
 int truck[1001];
-deque<int> Q; // 다리위의 트럭들 큐
-int cnt, time_count;
+queue<int> Q; // 다리위의 트럭들 큐
 
 int main(void) {
     ios::sync_with_stdio(0);
     cin.tie(0);cout.tie(0);
-    cin >> n >> W >> L;
+    cin >> n >> w >> L;
     for (int i = 0; i < n; ++i) cin >> truck[i];
 
-    Q.resize(W);
+    for(int i = 0; i < n; i++) {
+        while(true) {// LOOP: 다리에서 트럭을 빼는 과정
+            if(Q.size() == w) {// CONDITION: 다리가 꽉 찬 경우
+                weightSum -= Q.front();
+                Q.pop();// 맨 앞의 트럭 제거
+            }
+            // CONDITION: 무게가 정상인 경우 반복문 나감
+            if(truck[i] + weightSum <= L) break;
 
-    while (cnt < n) {// LOOP: 들어간 트럭수가 n이 될때까지
-        time_count++;
-        Q.pop_front();
-
-        int weight=0, number=0; // 현재 다리위에 있는 모든 트럭의 무게, 개수
-        for (int j = 0; j < Q.size(); ++j) {
-            weight += Q[j];
-            if (Q[j] > 0)
-                number ++;
+            // 무게가 L을 넘는 경우
+            Q.push(0);
+            ans++;
         }
-
-        // CONDITION: 무게, 다리길이를 초과한다면 패스.
-        if (weight + truck[cnt] > L || number + 1 > W){
-            Q.push_back(0); // 트럭이 없음을 표시
-            continue;
-        }
-
-        Q.push_back(truck[cnt++]);
-
+        Q.push(truck[i]); // 트럭 추가
+        weightSum += truck[i];
+        ans++;
     }
-    cout << time_count + W;
+
+    cout << ans + w; // 마지막 트럭이 건너는 시간 w 더하기
 }
