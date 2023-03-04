@@ -28,6 +28,7 @@
  O(N)
 # 회고
  - 삼각형 형태의 숫자들을 2차원 배열으로 단순화시켜봤다.
+ - 2차원 배열을 2개 만들 필요가 없다. 처음 받은 배열에서 해결 가능.
 */
 
 
@@ -35,7 +36,6 @@
 using namespace std;
 
 int n;
-int t[505][505];
 int D[505][505];
 
 int main(void){
@@ -46,24 +46,20 @@ int main(void){
     int floor;
     for (int i = 1; i <= n; ++i) {
         for (int j = 1; j <= i; ++j) {
-            cin >> t[i][j];
+            cin >> D[i][j];
         }
     }
 
     // INITIAL
-    D[1][1] = t[1][1];
+    D[1][1] = D[1][1];
 
-    // 점화식 : D[y][x] = MAX( D[y-1][x-1], D[y-1][x] ) + t[y][x]
+    // 점화식 : D[y][x] = MAX( D[y-1][x-1], D[y-1][x] ) + D[y][x]
     for (int i = 2; i <= n; ++i) {
         for (int j = 1; j <= i; ++j) {
-            D[i][j] = max(D[i - 1][j - 1], D[i-1][j]) + t[i][j];
+            D[i][j] += max(D[i - 1][j - 1], D[i-1][j]);
         }
     }
 
     // 마지막 줄에서 최대값 출력
-    int ans = 0;
-    for (int i = 1; i <= n; ++i) {
-        if (D[n][i] > ans) ans = D[n][i];
-    }
-    cout << ans;
+    cout << *max_element(D[n]+1, D[n]+1+n);
 }
