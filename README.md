@@ -1,68 +1,84 @@
-# algorithms
+## 전략
+### 알고리즘 공부의 본질
+[코딩 테스트 준비 어떻게 해야하나요?](https://www.youtube.com/watch?v=4D0PYVntENw)
 
-알고리즘들을 유형별로 공부하고 정리해두는 repository입니다.  
-주로 백준, 프로그래머스 문제에 대한 풀이를 올리고,  
-인사이트 및 지식을 markdown으로 따로 정리합니다.
+1. 개념 공부(바킹독) => 기본 배경지식, 기법 습득
+2. 다양한 문제 풀어보기(랜덤 유형으로, 하루 1~2개씩) => 문제해결력
+3. 구현력
 
-종만북(알고리즘 문제해결 전략)과 [코난쿤](https://github.com/conankun/jmbook)님, [바킹독](https://blog.encrypted.gg/category/%EA%B0%95%EC%A2%8C/%EC%8B%A4%EC%A0%84%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98?page=3)님, [tony9402](https://github.com/tony9402/baekjoon)님, [박트리](https://baactree.tistory.com/14)님...의 글을 등불 삼아 공부하는 중입니다.
+> **수학 공부**와 본질적으로 같다.
+  다양한 문제를 풀면서 **문제 파악, 접근 능력**을 기르는데에 의의를 두자. 접근 방법만 맞다면 문제의 70%는 맞은 것. 
+  문제 접근 방법을 연습하자. 
+    문제를 끝까지 푸는것보다 오히려 문제 접근 방법만 떠올리는 방식으로 공부하는게 훨씬 효율적이다.
 
-## 알고리즘 유형별 정리
-현재는 종만북의 목차를 중심으로 배우기 좋은 순서대로 나열했습니다.  
-중요도(개념적으로도 코테로도)가 비교적 낮은 유형들은 밑에 두려고 합니다.  
-코딩테스트를 준비할 즈음에 총정리하면서 크게 수정할 예정입니다.  
-아직 한참 배우는 중입니다.  
+> 만약 계산 실수가 많이 나거나 구현력을 기르고 싶다면 아예 따로 '구현' 혹은 '시뮬레이션' 문제를 통해 따로 기르고, 
+ 
+> 주요 유형의 문제들을 매일 풀다가, 이제 구현이 익숙하다 싶으면 진짜 수학문제 풀듯이 해보자.  
+    문제 파악, 시간 복잡도 생각, 유형 파악만.
+    지금 내 방법(문제 재정의, 풀이 계획, 복잡도 검증, 회고)에 집중. 접근 방법만 맞다면 코드를 쓰는건 큰 의미 없다.   
 
-| 유형 | 태그 | 목표 문제수 |
-| --- | --- | --- |
-| [정렬](https://github.com/wonseok2877/algorithms/tree/master/Sort) | 정렬 |  |
-| [재귀](https://github.com/wonseok2877/algorithms/tree/master/Recursion) | 재귀 |  |
-| [Brute Force(무식하게 풀기)](https://github.com/wonseok2877/algorithms/tree/master/BruteForce) | 완전탐색 |  |
-| 완전탐색이란? | 완전탐색 | 0 (이론) |
-| 분할정복 |  |  |
-| 동적계획법(Dynamic Programming) | 동적계획법 |  |
-| 탐욕법(Greedy) | 탐욕법 |  |
-| 정수론 | 수학 |  |
-| 비트마스크 | 완전탐색 |  |
-| 부분 합 |  |  |
-| [선형 자료 구조](https://github.com/wonseok2877/algorithms/tree/master/LenearDataStructure) | 자료구조 | 0 (이론) |
-| [큐와 데크](https://github.com/wonseok2877/algorithms/tree/master/Queue&Deque) | 자료구조 |  |
-| [스택](https://github.com/wonseok2877/algorithms/tree/master/Stack) | 자료구조 |  |
-| 문자열(String) |  |  |
-| [트리 & 이진 검색 트리(BST)](https://github.com/wonseok2877/algorithms/tree/master/Tree) |  |  |
-| [우선순위 큐와 힙](https://github.com/wonseok2877/algorithms/tree/master/PriorityQueue) | 자료구조 |  |
-| 구간 트리 |  |  |
-| 상호 배타적 집합 |  |  |
-| 트라이(Trie) |  |  |
-| [그래프](https://github.com/wonseok2877/algorithms/tree/master/Graph) | 자료구조 |  |
-| [깊이 우선 탐색(DFS)](https://github.com/wonseok2877/algorithms/tree/master/DFS) | 그래프, 완전탐색 |  |
-| [너비 우선  탐색(BFS)](https://github.com/wonseok2877/algorithms/tree/master/BFS) | 그래프, 완전탐색 |  |
-| 최단 경로 알고리즘 |  |  |
-| [최소 스패닝 트리(MST)](https://github.com/wonseok2877/algorithms/tree/master/MST) |  |  |
-| 네트워크 유량 |  |  |
-|  |  |  |
-| Two Pointer | 투 포인터 |  |
-| Implementation | 구현 |  |
-| Simulation | 시뮬레이션 |  |
-| [Binary Search]() | 이분탐색 |  |
-| Prefix Sum | 누적 합 |  |
-| Topological Sorting | 위상정렬 |  |
-| Minimum Spanning Tree(MST) | 최소 스패닝 트리 |  |
-| Trie | 트라이 |  |
-| Dynamic Programming On Trees | 트리디피 |  |
-|  |  |  |
+### 빈출 유형
+https://github.com/tony9402/baekjoon/blob/main/CodingTest.md
+- 구현 17
+- DFS(백트래킹) 4
+- BFS(그래프 순회) 12
+- 그리디 1
+- DP(트리 DP까지) 10
+- 문자열 7
+- 최단경로 2
+- 비트마스크 2
+
+2016 ~ 2019년 사이에 출제되었던 주요 기업들의 공채에 등장한 알고리즘 유형  
+![](https://www.hanbit.co.kr/data/editor/20200918163925_xyypndmo.png)  
+
+https://www.hanbit.co.kr/media/channel/view.html?cms_code=CMS7793635735
+
+
+## 커리큘럼
+1. 백준 단계별로 풀어보기(바킹독 커리큘럼대로. 1/23기준 앞으로 126문제)
+코테 빈출 문제
+- [x] **브루트 포스**
+- [x] **백트래킹(DFS)**
+- [x] **그래프 순회(BFS)** : 16
+- [x] **DP** 1 : 16
+- [x] **그리디** : 8
+- [ ] **이분탐색** : 7
+
+  덜 빈출
+- [x] 정렬
+- [x] 재귀
+- [x] 스택 1
+- [x] 큐, 덱
+- [ ] 수학과 정수론 및 조합론 : 8
+- [ ] 투 포인터 : 5
+- [ ] 해시(집합과 맵) : 7
+- [x] 우선순위 큐
+- [ ] 이진 검색 트리(트리, 트리에서의 DP) : 7 + 4
+- [ ] 시뮬레이션 : 4
+- [ ] 최소 신장 트리(MST) : 6
+- [ ] 플로이드, 다익스트라(최단 경로) : 7
+- [ ] 위상 정렬 : 3
+- [ ] KMP(문자열 알고리즘1) : 2
+- [ ] 트라이(문자열 알고리즘1) : 3
+- [ ] 문자열 : ?
+- [ ] DP 심화 (DP 2) : 6
+- [ ] 비트마스크(동적 계획법3) : 6
+- [ ] 유니온 파인드 : 4
+2. 복습 ( **문제 접근 방법**만 )
+3. **코딩테스트 문제** 풀어보기(5/28부터 대충 60문제)
+    - https://github.com/tony9402/baekjoon
+4. **중요&취약** 유형 위주로
+    - 백준 **별표 친 문제들**을 다시 풀면서 완전히 이해
+      문제의 유형을 모른 채로 풀어야 함!
+      여러 유형으로 시도해보고, 왜 문제를 푸는데 이런 방법을 쓸 수밖에 없었는지 고민
+      시간복잡도와 유형 선택의 상관관계에 대해 생각해보기
+    - 바킹독 repository 추가 문제 풀기(대충 8월. 60문제)
+5. 각 기업별 **기출문제** 풀기(대충 10월. 60문제)
+    - https://school.programmers.co.kr/learn/challenges?tab=algorithm_practice_kit
+6. leetcode?
+
+
 
 ## 인사이트 정리
 
-|  [insights](https://github.com/wonseok2877/algorithms/tree/master/%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8) |
-|  --- |
-|  문제해결 전략 |
-|  시간복잡도 |
-|  알고리즘 정당성 증명 |
-|  자료구조 종류 |
-|  자주 하는 실수 |
-
-## TODO
-
-- [ ] 빅 세타, 오메가 표기법 md로 정리
-- [ ] 알고리즘 정당성 증명 md 보충
-- [ ] list, queue 등 자료구조 md로 정리
+[insights](https://github.com/wonseok2877/algorithms/tree/master/%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8) |
