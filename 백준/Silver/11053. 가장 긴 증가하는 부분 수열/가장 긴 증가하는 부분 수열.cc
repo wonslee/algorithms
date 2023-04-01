@@ -22,37 +22,27 @@
 # 복잡도 검증
  O(n^2)
 # 회고
+ 2차원 배열 필요없었다. 바킹독 참고
 */
 
 #include <bits/stdc++.h>
 using namespace std;
 
-int n, ans;
-int a[1005];
-int d[1005][1005]; // DP 배열
-int mx[1005];
+int n;
+int a[1005], d[1005]; // DP 배열
 
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     cin >> n;
+    for (int i = 0; i < n; ++i) cin >> a[i];
 
-    for (int i = 1; i <= n; ++i)
-        cin >> a[i];
+    fill(d, d + n, 1); // 모든 수는 최소 1부터 시작. 자기 자신이 있기 때문
 
-    // 지금은 틀렸음. 유리한 수만 골라서 가져가게 됨
-
-    // DP LOOP :
-    for (int i = 2; i <= n; ++i) {
-        for (int j = 1; j <= i-1; ++j) {
-            if (a[i] > a[j]) {// 값이 더 큰 경우 : 부분 수열 조건 만족
-                d[i][j] = mx[j] + 1;
-                if (d[i][j] > mx[i]) // i번째에 대한 최대값 갱신
-                    mx[i] = d[i][j];
-                if (mx[i] > ans) // 최대값 갱신
-                    ans = mx[i];
-            }
-        }
-    }
-    cout << ans + 1;
+    // DP LOOP
+    for (int i = 0; i < n; ++i)
+        for (int j = 0; j < i; ++j)
+            if (a[i] > a[j]) // 값이 더 큰 경우 : 부분 수열 조건 만족. 최대값 갱신
+                d[i] = max(d[i], d[j] + 1);
+    cout << *max_element(d, d + n);
 }
