@@ -27,8 +27,6 @@ for i in range(N + 1):
 
 # DFS(V)
 stack.append(V)
-visited[V] = True
-print(V, end=' ')
 
 while stack:
     node = stack.pop()
