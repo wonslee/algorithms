@@ -4,6 +4,7 @@ import sys
 from collections import deque
 
 read = sys.stdin.readline
+sys.setrecursionlimit(10 ** 6)
 
 # 입력
 N, M, V = map(int, read().split())
@@ -22,28 +23,23 @@ for _ in range(M):
 
 # 오름차순으로 인접 노드 방문하기 위한 정렬
 for i in range(N + 1):
-    adj_list[i].sort(reverse=True)
+    adj_list[i].sort()
 
 
-# DFS(V)
-stack.append(V)
+# DFS
+def dfs(node):
+    print(node, end=' ')
+    visited[node] = True
 
-while stack:
-    node = stack.pop()
-
-    if not visited[node]:
-        visited[node] = True  # 방문 표시
-        print(node, end=' ')
-
-    for adj in adj_list[node]:  # node의 인접 노드들에 대해
+    for adj in adj_list[node]:
         if not visited[adj]:
-            stack.append(adj)
+            dfs(adj)
 
+dfs(V)
 print()
 
 visited = [False for _ in range(N + 1)]  # 방문 기록 초기화
-for i in range(N + 1):
-    adj_list[i].sort()
+
 
 # BFS
 # queue가 비지 않는 동안
