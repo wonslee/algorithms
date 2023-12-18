@@ -3,7 +3,7 @@
 import sys
 
 read = sys.stdin.readline
-MAX_N = 50
+MAX_N = 21
 
 # init
 d = [[[0 for _ in range(MAX_N)] for _ in range(MAX_N)] for _ in range(MAX_N)]
