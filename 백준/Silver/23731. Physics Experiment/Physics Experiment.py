@@ -13,7 +13,6 @@ read = sys.stdin.readline
 MAX_INT = sys.maxsize  # 2^63 -1
 # input
 N = int(input())
-STR_N = str(N)  # 자릿수 구하기 위한 string
 
 # init
 result = N  # 최대값 갱신 변수
@@ -21,13 +20,15 @@ result = N  # 최대값 갱신 변수
 # main
 for i in range(len(str(N))):
     d_index = -(i+1)    # 인덱스 거꾸로
-    digit = int(str(N)[d_index])
+    digit = int(str(N)[d_index])    # 가장 최신의 N에서 구해야 함
+    # 반올림
     if digit >= 5:
         N += (10 - digit) * (10 ** i)
-        result = max(result, N)
     else:
         N -= digit * (10 ** i)
-        result = max(result, N)
+
+    # 최대값 갱신
+    result = max(result, N)
 
 print(result)
 
