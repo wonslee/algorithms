@@ -24,10 +24,8 @@ asc_cnt, dsc_cnt = 0, 0
 
 for i, price in enumerate(chart):
     # 준현
-    if cash_jun >= price:
-        shares_now = cash_jun // price
-        cash_jun -= shares_now * price
-        shares_jun += shares_now
+    shares_jun += cash_jun // price
+    cash_jun %= price
 
     # 성민
     if i > 0:
@@ -40,10 +38,9 @@ for i, price in enumerate(chart):
         else:
             asc_cnt, dsc_cnt = 0, 0
 
-    if dsc_cnt >= 3 and cash_sung >= price:
-        shares_now = cash_sung // price
-        cash_sung -= shares_now * price
-        shares_sung += shares_now
+    if dsc_cnt >= 3:
+        shares_sung += cash_sung // price
+        cash_sung %= price
 
     if asc_cnt >= 3:
         cash_sung += shares_sung * price
